@@ -33,9 +33,8 @@ int findMode(Story *stories, int numStory);
  x0. make sure code is right and meets the specs： pointer notation vs array notation?
  x1. design doc
  2. test cases
- x3. programming log; fill in eid to header and design doc
+ 3. programming log; fill in eid to header and design doc
  x4. format the code so that it meets the style guide
- * Bryan can work on: 1. 
 */
 
 /*
