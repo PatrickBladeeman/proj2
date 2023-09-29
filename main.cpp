@@ -5,8 +5,11 @@
 #include <fstream>
 using namespace std;
 
+void readInput(string file, string *title, string *url, int *score);
+void displayScreen();
+int findMode();
 
-void main(){
+int main(){
     // fstream input;
     char nextRound;
     do {
@@ -23,33 +26,51 @@ void main(){
     cin >> nextRound;
     } while (nextRound == 'Y');
 
-
+    return 0;
 }
 
 void readInput(string file, string *title, string *url, int *score){
     fstream input;
+    cout << "file name: " << file << endl;
     input.open(file);
-    if (input.is_open()) {
+    if (!input.is_open()) {
         cerr << "FILE IS NOT OPEN" << endl;
     }
 
     //reading int
     int numStory;
-    if (!input >> numStory) {
-        cerr << "Failed to read int" << endl;
-    } 
-    string *title = new string[numStory];
-    string* nameArr = new string [numStory];
-    int* scores = new int[numStory];
     string newLine;
+    getline(input, newLine);
+    numStory = stoi(newLine);
     
-    while(getline(file, newLine)){
+   // cout<<"numStory: "<<numStory<<endl;
+    // arrays to store information
+    string *titles = new string[numStory];
+    string *links = new string[numStory];
+    int *scores = new int[numStory];
+    
+    for (int i = 0; i < numStory; i++) {
+    titles[i] = ""; // Allocate memory for an empty string
+}
 
+    
+    int lineNum = 1;
+   
+    while(getline(input, newLine)){
+        // store the title/name/score in appropriate array
+        cout<< "executed: " << lineNum << endl;
+        if (lineNum % 3 == 1) { // title
+            titles[lineNum/3] = newLine;
+        } else if (lineNum % 3 == 2) { // url
+            links[lineNum/3] = newLine;
+        } else { // score
+            scores[lineNum/3 - 1] = stoi(newLine);
+        }
+        lineNum++;
     }
+    input.close();
 
-
-
-
+    // remember to deleted at the end
 }
 
 int findMode(){
