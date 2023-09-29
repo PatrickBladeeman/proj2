@@ -5,6 +5,11 @@
 #include <fstream>
 using namespace std;
 
+struct Story {
+    string title;
+    string link;
+    int score;
+};
 void readInput(string file, string *title, string *url, int *score);
 void displayScreen();
 int findMode();
@@ -36,23 +41,12 @@ void readInput(string file, string *title, string *url, int *score){
     if (!input.is_open()) {
         cerr << "FILE IS NOT OPEN" << endl;
     }
-
-    //reading int
+    
     int numStory;
     string newLine;
     getline(input, newLine);
     numStory = stoi(newLine);
-    
-   // cout<<"numStory: "<<numStory<<endl;
-    // arrays to store information
-    string *titles = new string[numStory];
-    string *links = new string[numStory];
-    int *scores = new int[numStory];
-    
-    for (int i = 0; i < numStory; i++) {
-    titles[i] = ""; // Allocate memory for an empty string
-}
-
+    Story stories[numStory];
     
     int lineNum = 1;
    
@@ -60,17 +54,27 @@ void readInput(string file, string *title, string *url, int *score){
         // store the title/name/score in appropriate array
         cout<< "executed: " << lineNum << endl;
         if (lineNum % 3 == 1) { // title
-            titles[lineNum/3] = newLine;
+            //titles[lineNum/3] = newLine;
+            stories[lineNum/3].title = newLine;
         } else if (lineNum % 3 == 2) { // url
-            links[lineNum/3] = newLine;
+            //links[lineNum/3] = newLine;
+            stories[lineNum/3].link = newLine;
         } else { // score
-            scores[lineNum/3 - 1] = stoi(newLine);
+            //scores[lineNum/3 - 1] = stoi(newLine);
+            stories[lineNum/3 - 1].score = stoi(newLine);
         }
         lineNum++;
     }
     input.close();
-
-    // remember to deleted at the end
+    
+    for (int i = 0; i < numStory; i++) {
+    cout << "Element " << i << ":" << endl;
+    cout << "title: " << stories[i].title << endl;
+    cout << "link: " << stories[i].link << endl;
+    cout << "score: " << stories[i].score <<  endl;
+    cout << std::endl; // Add an empty line for separation
+}
+    // remember to free memory with deleted at the end
 }
 
 int findMode(){
