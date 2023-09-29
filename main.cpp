@@ -35,6 +35,7 @@ int findMode(Story *stories, int numStory);
  2. test cases
  x3. programming log; fill in eid to header and design doc
  x4. format the code so that it meets the style guide
+ * Bryan can work on: 1. 
 */
 
 /*
@@ -52,10 +53,15 @@ int main(){
     cout << "Enter name of the file:" << endl;
     cin >> fileName;
     int numStory; // numeric value stores total number of stories in file
-
-    Story *stories = readInput(fileName, numStory); // stores array of stories
-    int mode = findMode(stories, numStory); // integer store mode of stories
-    displayScreen(mode, numStory, stories);
+    fstream input(fileName);
+    if (input.is_open()) {
+        input.close(); // Close the file after checking
+        Story *stories = readInput(fileName, numStory); // stores array of stories
+        int mode = findMode(stories, numStory); // integer store mode of stories
+        displayScreen(mode, numStory, stories);
+    } else {
+        cerr << "File DNE or cannot be opened." << endl;
+    }
     cout << "Another file? Y for yes" << endl;
     cin >> nextRound;
     } while (nextRound == 'Y');
@@ -74,11 +80,7 @@ int main(){
  */
 Story* readInput(string file, int &numStory){
     fstream input;
-    cout << "file name: " << file << endl;
     input.open(file);
-    if (!input.is_open()) {
-        cerr << "FILE IS NOT OPEN" << endl;
-    }
     
     string newLine; // string stores one line of the file
     getline(input, newLine);
@@ -166,7 +168,7 @@ void displayScreen(int mode, int numStory, Story *stories){
         int count = 0;
         while(count < STORIES_NO_MODE && count < numStory){
             cout << stories[count].title << endl;
-            cout << stories[count].link << endl;
+            cout << stories[count].link << "\n" << endl;
             count++;
         }   
         
