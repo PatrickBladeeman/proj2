@@ -11,7 +11,7 @@ stories.
     Then we used the same array of structures to display appropriate output
 to screen.
 
-    Algotithms:
+    Algorithms:
     In the main function, we used a do-while loop to control the entire reading-
 writing process as well as whether the user wants to begin another round.
     In readInput() function, we used a while loop to read each line of the file
@@ -25,6 +25,7 @@ to output, depending on whether there is a mode or not.
 
 2. Explain any design choices you decided to make.
     
+    We assumed that the input files would always be formatted the same way.
     We decided to use an array of structures to store the information of all the
 stories, instead of creating one array for each type of data for the stories. 
 3. Add instructions on how to compile and run the program on the GDC lab
@@ -34,6 +35,8 @@ machines.
 machines.
 
     To compile and run, download main.cpp file and relevent inout files. Then
-in terminal, navigate to the correct directory where the files are stored, and 
-type in “g++ main.cpp -o main” and then “./main” to compile and run.
+in terminal, navigate to the correct directory where the files are stored. Make
+sure you can read, write, and execute the program with chmod +rwx. Then, type in
+“g++ project1_hz6973_zz7877.cpp -o project1_hz6973_zz7877” and then 
+“./project1_hz6973_zz7877” to compile and run.
 

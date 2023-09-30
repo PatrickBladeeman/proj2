@@ -1,4 +1,4 @@
-// File Name: project1_hz6973_yyyyy.cpp
+// File Name: project1_hz6973_zz7877.cpp
 //
 // Authors: Regina Zhou, Bryan Zhao
 // Date: 9/29/2023
@@ -29,14 +29,6 @@ Story* readInput(string file, int &numElem);
 void displayScreen(int mode, int numStory, Story *stories);
 int findMode(Story *stories, int numStory);
 
-/* we need: 
- x0. make sure code is right and meets the specs： pointer notation vs array notation?
- x1. design doc
- 2. test cases
- 3. programming log; fill in eid to header and design doc
- x4. format the code so that it meets the style guide
-*/
-
 /*
  * main: controls the entire process of reading file/writing
  * to screen and whether the user wants another round.
@@ -55,7 +47,7 @@ int main(){
     fstream input(fileName);
     if (input.is_open()) {
         input.close(); // Close the file after checking
-        Story *stories = readInput(fileName, numStory); // stores array of stories
+        Story *stories = readInput(fileName, numStory);//stores array of stories
         int mode = findMode(stories, numStory); // integer store mode of stories
         displayScreen(mode, numStory, stories);
     } else {
@@ -99,15 +91,6 @@ Story* readInput(string file, int &numStory){
         lineNum++;
     }
     input.close();
-    
-    // for (int i = 0; i < numStory; i++) {
-    // cout << "Element " << i << ":" << endl;
-    // cout << "title: " << stories[i].title << endl;
-    // cout << "link: " << stories[i].link << endl;
-    // cout << "score: " << stories[i].score <<  endl;
-    // cout << std::endl; // Add an empty line for separation
-    // }
-    // remember to free memory with deleted at the end?
     return stories;
 }
 
@@ -121,15 +104,14 @@ Story* readInput(string file, int &numStory){
  * 
  * Bryan Zhao drives this function
  */
-int findMode(Story *stories, int numStory){ // accepts a pointer to array of 
-                                            //structures?
+int findMode(Story *stories, int numStory){ 
     int *scores = new int[numStory]; // int array stores all story scores
 
     for(int i = 0; i < numStory; i++){
         scores[i] = stories[i].score;
     }
 
-    sort(scores, scores + numStory); 
+    sort(scores, scores + numStory);
     int mode = 0; // int stores final mode value
     int modeCount = 0; // int stores frequency of mode
     int currNum = scores[0]; // int store the current number
@@ -147,8 +129,7 @@ int findMode(Story *stories, int numStory){ // accepts a pointer to array of
             currCount = 1;
         }
     }
-   
-return mode > 1? mode : -1;
+return modeCount > 1? mode : -1;
 }
 
 /*
